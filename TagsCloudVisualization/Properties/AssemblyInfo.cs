@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("TagsCloudVisualisation")]
+[assembly: AssemblyTitle("TagsCloudVisualization")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TagsCloudVisualisation")]
+[assembly: AssemblyProduct("TagsCloudVisualization")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("dc3b803b-1e9e-44ab-ae2d-167d4266e55c")]
+[assembly: Guid("33121f10-0159-4c38-b790-b17d00230605")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
