@@ -124,7 +124,7 @@ namespace CurcularCloudLayouterTests
         [TestCase(20, 300, 300, TestName = "Big")]
         [TestCase(30, 5, 20, TestName = "Tall")]
         [TestCase(50, 50, 50, TestName = "Random")]
-        [TestCase(200, 20, 5, TestName = "Long")]
+        [TestCase(200, 80, 10, TestName = "Long")]
         public void ManyRandomRectangles_ShapeCircleTest(int rectanglesNumber, int maxWidth, int maxHeight)
         {
             var rand = new Random();
@@ -134,6 +134,8 @@ namespace CurcularCloudLayouterTests
                 .ToArray();
             var rectangles = AddRectangles(sizes);
             AssertShapeCircle(rectangles);
+            if (rectanglesNumber == 200)
+                Assert.Fail();
         }
     }
 }

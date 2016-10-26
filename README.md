@@ -6,5 +6,5 @@
 
 ![Случайные длинные прямоугольники](https://github.com/Van10000/tdd/tree/master/VisualizationExamples/randomLong.png)
 
-![Большие прямоугольники](https://github.com/Van10000/tdd/tree/master/VisualizationExamples/big.png)
+![Большие прямоугольники](https://github.com/Van10000/tdd/tree/master/VisualizationExamples/Big.png)
 
