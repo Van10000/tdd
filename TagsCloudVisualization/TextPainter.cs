@@ -21,7 +21,7 @@ namespace TagsCloudVisualization
             return Math.Max(withRelativeMargin, withAbloluteMargin);
         }
 
-        public static Color GetRandomColor(Random rand)
+        private static Color GetRandomColor(Random rand)
             => Color.FromArgb(127, rand.Next(100, 255), rand.Next(100, 255), rand.Next(100, 255));
 
         public static Bitmap GetPicture(CircularCloudLayouter layouter)
@@ -35,9 +35,9 @@ namespace TagsCloudVisualization
             var shift = new Point(width / 2, height / 2) - layouter.Center;
             graphics.FillRegion(Brushes.White, new Region(new System.Drawing.Rectangle(0, 0, width, height)));
             var rand = new Random();
-            for (var i = 0; i < rectangles.Count; ++i)
+            foreach (var rect in rectangles)
             {
-                var rectToPaint = rectangles[i].ToDrawingRectangle(shift);
+                var rectToPaint = rect.ToDrawingRectangle(shift);
                 var color = GetRandomColor(rand);
                 graphics.FillRectangle(new SolidBrush(color), rectToPaint);
             }

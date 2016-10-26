@@ -48,8 +48,8 @@ namespace TagsCloudVisualization
 
         public Rectangle PutRectangleAtPoint(Point point, Size rectangleSize)
         {
-            for (int i = 0; i <= 1; ++i)
-                for (int j = 0; j <= 1; ++j)
+            for (var i = 0; i <= 1; ++i)
+                for (var j = 0; j <= 1; ++j)
                 {
                     var curX = point.X - rectangleSize.Width * i;
                     var curY = point.Y - rectangleSize.Height * j;

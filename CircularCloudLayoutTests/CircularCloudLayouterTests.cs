@@ -134,8 +134,6 @@ namespace CurcularCloudLayouterTests
                 .ToArray();
             var rectangles = AddRectangles(sizes);
             AssertShapeCircle(rectangles);
-            if (rectanglesNumber == 200)
-                Assert.Fail();
         }
     }
 }
