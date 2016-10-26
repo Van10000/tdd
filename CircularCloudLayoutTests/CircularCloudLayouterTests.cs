@@ -94,11 +94,11 @@ namespace CurcularCloudLayouterTests
             AssertRectanglesDoNotIntersect(GetSizes(rectanglesNumber, width, height));
         }
 
-        public void AssertShapeCircle(List<Rectangle> rectangles)
+        public void AssertShapeCircle(List<Rectangle> rectangles, double strictnessCoefficient)
         {
             var sumSpace = rectangles.Sum(rect => rect.Size.Space);
             var minimalCircleRadius = Math.Sqrt(sumSpace / Math.PI);
-            var margin = rectangles.Max(rect => Math.Max(rect.Size.Width, rect.Size.Height)) * 2;
+            var margin = rectangles.Max(rect => Math.Max(rect.Size.Width, rect.Size.Height)) * strictnessCoefficient;
 
             rectangles
                 .SelectMany(rect => rect.GetPoints())
@@ -113,7 +113,7 @@ namespace CurcularCloudLayouterTests
         public void ManyRectangles_ShapeCircleTest(int rectanglesNumber, int width, int height)
         {
             var rectangles = AddRectangles(GetSizes(rectanglesNumber, width, height));
-            AssertShapeCircle(rectangles);
+            AssertShapeCircle(rectangles, 2);
         }
 
         private Size GetRandomSize(Random rand, int maxWidth, int maxHeight)
@@ -133,7 +133,13 @@ namespace CurcularCloudLayouterTests
                 .Select(_ => GetRandomSize(rand, maxWidth, maxHeight))
                 .ToArray();
             var rectangles = AddRectangles(sizes);
-            AssertShapeCircle(rectangles);
+            AssertShapeCircle(rectangles, 2);
+        }
+
+        [Test]
+        public void SingleRectangle_ShapeCircleTest()
+        {
+            AssertShapeCircle(AddRectangles(GetSizes(1, 1, 100)), 0.5);
         }
     }
 }

@@ -26,13 +26,13 @@ namespace TagsCloudVisualization
             return rectangle;
         }
 
-        public Rectangle PutNextRectangle(Size rectangleSze)
+        public Rectangle PutNextRectangle(Size rectangleSize)
         {
             if (previousRectangles.Count == 0)
-                return AddRectangle(new Rectangle(center, rectangleSze));
+                return AddRectangle(new Rectangle(center - rectangleSize / 2, rectangleSize));
             var resultRect = previousRectangles
                 .GetAllPoints()
-                .Select(point => PutRectangleAtPoint(point, rectangleSze))
+                .Select(point => PutRectangleAtPoint(point, rectangleSize))
                 .Where(newRect => newRect != null)
                 .OrderBy(newRect => newRect
                                     .GetPoints()

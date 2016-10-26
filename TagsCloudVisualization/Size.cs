@@ -46,5 +46,10 @@ namespace TagsCloudVisualization
         {
             return new Size(a.Width * d, a.Height * d);
         }
+
+        public static Size operator /(Size a, int d)
+        {
+            return new Size(Math.Max(a.Width / d, 1), Math.Max(a.Height / d, 1));
+        }
     }
 }

@@ -35,8 +35,8 @@ namespace TagsCloudVisualization
 
         public IEnumerable<Point> GetPoints()
         {
-            for (int i = 0; i <= 1; ++i)
-                for (int j = 0; j <= 1; ++j)
+            for (var i = 0; i <= 1; ++i)
+                for (var j = 0; j <= 1; ++j)
                     yield return new Point(LeftDown.X + Size.Width * i, LeftDown.Y + Size.Height * j);
         }
 
