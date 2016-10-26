@@ -11,6 +11,8 @@ namespace TagsCloudVisualization
         public readonly int Width;
         public readonly int Height;
 
+        public int Space => Width * Height;
+
         public Size(int width, int height)
         {
             if (width <= 0 || height <= 0)
@@ -18,7 +20,7 @@ namespace TagsCloudVisualization
             Width = width;
             Height = height;
         }
-
+        
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -38,6 +40,11 @@ namespace TagsCloudVisualization
             {
                 return (Width * 397) ^ Height;
             }
+        }
+
+        public static Size operator *(Size a, int d)
+        {
+            return new Size(a.Width * d, a.Height * d);
         }
     }
 }

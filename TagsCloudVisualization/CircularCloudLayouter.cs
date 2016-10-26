@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace TagsCloudVisualization
     {
         private readonly Point center;
         private readonly List<Rectangle> previousRectangles = new List<Rectangle>();
+
+        public ReadOnlyCollection<Rectangle> PreviousRectangles => previousRectangles.AsReadOnly();
+        public Point Center => new Point(center.X, center.Y);
 
         public CircularCloudLayouter(Point center)
         {
@@ -27,7 +31,7 @@ namespace TagsCloudVisualization
             if (previousRectangles.Count == 0)
                 return AddRectangle(new Rectangle(center, rectangleSze));
             var resultRect = previousRectangles
-                .SelectMany(rect => rect.GetPoints())
+                .GetAllPoints()
                 .Select(point => PutRectangleAtPoint(point, rectangleSze))
                 .Where(newRect => newRect != null)
                 .OrderBy(newRect => newRect

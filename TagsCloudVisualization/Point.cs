@@ -43,5 +43,20 @@ namespace TagsCloudVisualization
                 return (X * 397) ^ Y;
             }
         }
+
+        public static Point operator +(Point a, Point b)
+        {
+            return new Point(a.X + b.X, a.Y + b.Y);
+        }
+
+        public static Point operator -(Point a, Point b)
+        {
+            return new Point(a.X - b.X, a.Y - b.Y);
+        }
+
+        public static Point operator *(Point a, int d)
+        {
+            return new Point(a.X * d, a.Y * d);
+        }
     }
 }

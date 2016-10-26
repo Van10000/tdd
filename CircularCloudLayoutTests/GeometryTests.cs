@@ -13,7 +13,7 @@ namespace CurcularCloudLayouterTests
     public class GeometryTests
     {
         [Test]
-        public void NewPointFieldsTest()
+        public void NewPoint_CorrectFieldsTest()
         {
             var point = new Point(3, 5);
             point.X.Should().Be(3);
@@ -21,7 +21,7 @@ namespace CurcularCloudLayouterTests
         }
 
         [Test]
-        public void NewSizeFieldsTest()
+        public void NewSize_CorrectFieldsTest()
         {
             var size = new Size(10, 15);
             size.Width.Should().Be(10);
@@ -29,13 +29,13 @@ namespace CurcularCloudLayouterTests
         }
 
         [Test]
-        public void NegativeSizeTest()
+        public void NegativeSize_IsImpossibleTest()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new Size(-1, 0));
         }
 
         [Test]
-        public void ZeroSizeTest()
+        public void ZeroSize_IsImpossibleTest()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new Size(0, 0));
         }

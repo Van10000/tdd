@@ -18,7 +18,7 @@ namespace CurcularCloudLayouterTests
         }
 
         [Test]
-        public void NewRectangleFieldsTest()
+        public void NewRectangle_CorrectFieldsTest()
         {
             var rect = new Rectangle(new Point(2, 3), 5, 1);
             rect.LeftDown.Should().Be(new Point(2, 3));
@@ -55,7 +55,7 @@ namespace CurcularCloudLayouterTests
             1, 1, 2, 2,
             ExpectedResult = true,
             TestName = "One inside another")]
-        public bool RectanglesIntersectTest(int p1X, int p1Y, int p1Width, int p1Height, int p2X, int p2Y, int p2Width,
+        public bool Rectangles_IntersectionTest(int p1X, int p1Y, int p1Width, int p1Height, int p2X, int p2Y, int p2Width,
             int p2Height)
         {
             var rect1 = new Rectangle(new Point(p1X, p1Y), p1Width, p1Height);
@@ -64,7 +64,7 @@ namespace CurcularCloudLayouterTests
         }
 
         [Test]
-        public void GetPointsTest()
+        public void GetPoints_CorrectResultTest()
         {
             var rect = new Rectangle(new Point(0, 0), 2, 4);
             rect.GetPoints()

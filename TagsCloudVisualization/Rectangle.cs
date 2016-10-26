@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,15 @@ namespace TagsCloudVisualization
             for (int i = 0; i <= 1; ++i)
                 for (int j = 0; j <= 1; ++j)
                     yield return new Point(LeftDown.X + Size.Width * i, LeftDown.Y + Size.Height * j);
+        }
+
+        public System.Drawing.Rectangle ToDrawingRectangle(Point shift)
+        {
+            return new System.Drawing.Rectangle(
+                LeftDown.X + shift.X,
+                LeftDown.Y + shift.Y,
+                Size.Width,
+                Size.Height);
         }
     }
 }
