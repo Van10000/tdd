@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+// CR: I see everything @___@
 using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
@@ -32,6 +33,8 @@ namespace CircularCloudLayoutTests
         }
     }
 
+    // CR: Nah, looks like crap also.
+    // Split into separate tests with different names.
     class RectanglesIntersectionTestData
     {
         public static IEnumerable TestCases()

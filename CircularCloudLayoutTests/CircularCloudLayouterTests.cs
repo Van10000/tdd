@@ -24,6 +24,7 @@ namespace CircularCloudLayoutTests
             if (TestContext.CurrentContext.Result.FailCount != 0)
             {
                 var image = TextPainter.GetPicture(layouter);
+                // CR: You should use absolute paths, because it won't work on any other machine
                 var dirPath =
                     @"C:\Users\ISmir\Desktop\учёба\2 курс\шпора\testing\homework\tdd\CircularCloudLayoutTests\bin\Debug\";
                 var fileName = TestContext.CurrentContext.Test.Name + ".png";
@@ -86,6 +87,7 @@ namespace CircularCloudLayoutTests
         [TestCase(200, 80, 10, TestName = "Long")]
         public void ManyRandomRectangles_ShapeCircleTest(int rectanglesNumber, int maxWidth, int maxHeight)
         {
+            // CR: If use random test, fix the seed to avoid flakiness
             var rand = new Random();
             var sizes =
                 Enumerable.Repeat(new Size(1, 1), rectanglesNumber)
@@ -107,6 +109,7 @@ namespace CircularCloudLayoutTests
             AssertShapeCircle(rectangles, 0.5);
         }
 
+        // Nit: AssertCircleShape
         private void AssertShapeCircle(Rectangle[] rectangles, double strictnessCoefficient)
         {
             var sumArea = rectangles.Sum(rect => rect.Size.Area);

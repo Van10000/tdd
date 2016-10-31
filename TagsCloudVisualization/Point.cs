@@ -13,6 +13,7 @@ namespace TagsCloudVisualization
             Y = y;
         }
 
+        // CR: Just why?
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public double Distance(Point point)
         {
