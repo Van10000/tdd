@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TagsCloudVisualization
 {
@@ -28,11 +24,6 @@ namespace TagsCloudVisualization
                 && Intersects1D(LeftDown.Y, rect.LeftDown.Y, Size.Height, rect.Size.Height);
         }
 
-        private static bool Intersects1D(int firstCoord, int secondCoord, int firstSize, int secondSize)
-        {
-            return Math.Max(firstCoord, secondCoord) < Math.Min(firstCoord + firstSize, secondCoord + secondSize);
-        }
-
         public IEnumerable<Point> GetPoints()
         {
             for (var i = 0; i <= 1; ++i)
@@ -40,13 +31,9 @@ namespace TagsCloudVisualization
                     yield return new Point(LeftDown.X + Size.Width * i, LeftDown.Y + Size.Height * j);
         }
 
-        public System.Drawing.Rectangle ToDrawingRectangle(Point shift)
+        private static bool Intersects1D(int firstCoord, int secondCoord, int firstSize, int secondSize)
         {
-            return new System.Drawing.Rectangle(
-                LeftDown.X + shift.X,
-                LeftDown.Y + shift.Y,
-                Size.Width,
-                Size.Height);
+            return Math.Max(firstCoord, secondCoord) < Math.Min(firstCoord + firstSize, secondCoord + secondSize);
         }
     }
 }

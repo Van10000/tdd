@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TagsCloudVisualization
 {
@@ -20,12 +17,6 @@ namespace TagsCloudVisualization
             this.center = center;
         }
 
-        private Rectangle AddRectangle(Rectangle rectangle)
-        {
-            previousRectangles.Add(rectangle);
-            return rectangle;
-        }
-
         public Rectangle PutNextRectangle(Size rectangleSize)
         {
             if (previousRectangles.Count == 0)
@@ -40,13 +31,18 @@ namespace TagsCloudVisualization
                 .FirstOrDefault();
             return resultRect != null ? AddRectangle(resultRect) : null;
         }
-
+        private Rectangle AddRectangle(Rectangle rectangle)
+        {
+            previousRectangles.Add(rectangle);
+            return rectangle;
+        }
+        
         private bool CanBeAdded(Rectangle rect)
         {
             return !previousRectangles.Any(rect.IntersectsWith);
         }
-
-        public Rectangle PutRectangleAtPoint(Point point, Size rectangleSize)
+        
+        private Rectangle PutRectangleAtPoint(Point point, Size rectangleSize)
         {
             for (var i = 0; i <= 1; ++i)
                 for (var j = 0; j <= 1; ++j)

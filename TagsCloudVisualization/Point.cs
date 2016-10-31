@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TagsCloudVisualization
 {
@@ -16,6 +13,7 @@ namespace TagsCloudVisualization
             Y = y;
         }
 
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
         public double Distance(Point point)
         {
             var XProj = point.X - X;
@@ -44,11 +42,6 @@ namespace TagsCloudVisualization
             }
         }
 
-        public static Point operator +(Point a, Point b)
-        {
-            return new Point(a.X + b.X, a.Y + b.Y);
-        }
-
         public static Point operator -(Point a, Point b)
         {
             return new Point(a.X - b.X, a.Y - b.Y);
@@ -57,11 +50,6 @@ namespace TagsCloudVisualization
         public static Point operator -(Point a, Size b)
         {
             return new Point(a.X - b.Width, a.Y - b.Height);
-        }
-
-        public static Point operator *(Point a, int d)
-        {
-            return new Point(a.X * d, a.Y * d);
         }
     }
 }
