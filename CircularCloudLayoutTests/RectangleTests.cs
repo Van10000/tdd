@@ -1,7 +1,4 @@
-﻿using System.Collections;
-// CR: I see everything @___@
-using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 using TagsCloudVisualization;
 
@@ -18,10 +15,52 @@ namespace CircularCloudLayoutTests
             rect.Size.Should().Be(new Size(5, 1));
         }
 
-        [Test, TestCaseSource(typeof(RectanglesIntersectionTestData), nameof(RectanglesIntersectionTestData.TestCases))]
-        public bool Rectangles_IntersectionTest(Rectangle first, Rectangle second)
+        [Test]
+        public void Rectangles_IntersectTest()
         {
-            return first.IntersectsWith(second);
+            var first = new Rectangle(new Point(0, 0), 2, 2);
+            var second = new Rectangle(new Point(1, 1), 2, 2);
+            first.IntersectsWith(second).Should().BeTrue();
+        }
+
+        [Test]
+        public void RectanglesSameY_DoNotIntersectTest()
+        {
+            var first = new Rectangle(new Point(0, 0), 1, 2);
+            var second = new Rectangle(new Point(2, 0), 1, 1);
+            first.IntersectsWith(second).Should().BeFalse();
+        }
+
+        [Test]
+        public void RectanglesSameX_DoNotIntersectTest()
+        {
+            var first = new Rectangle(new Point(0, 0), 1, 3);
+            var second = new Rectangle(new Point(0, 4), 1, 3);
+            first.IntersectsWith(second).Should().BeFalse();
+        }
+
+        [Test]
+        public void RectanglesWithCommonLine_DoNotIntersectTest()
+        {
+            var first = new Rectangle(new Point(0, 0), 1, 4);
+            var second = new Rectangle(new Point(0, 4), 1, 4);
+            first.IntersectsWith(second).Should().BeFalse();
+        }
+
+        [Test]
+        public void RectanglesWithMinimalOverlap_IntersectTest()
+        {
+            var first = new Rectangle(new Point(0, 0), 1, 5);
+            var second = new Rectangle(new Point(0, 4), 1, 1);
+            first.IntersectsWith(second).Should().BeTrue();
+        }
+
+        [Test]
+        public void RectanglesOneInsideAnother_IntersectTest()
+        {
+            var first = new Rectangle(new Point(0, 0), 4, 4);
+            var second = new Rectangle(new Point(1, 1), 2, 2);
+            first.IntersectsWith(second).Should().BeTrue();
         }
 
         [Test]
@@ -30,50 +69,6 @@ namespace CircularCloudLayoutTests
             var rect = new Rectangle(new Point(0, 0), 2, 4);
             rect.GetPoints()
                 .ShouldAllBeEquivalentTo(new[] {new Point(0, 0), new Point(2, 0), new Point(0, 4), new Point(2, 4)});
-        }
-    }
-
-    // CR: Nah, looks like crap also.
-    // Split into separate tests with different names.
-    class RectanglesIntersectionTestData
-    {
-        public static IEnumerable TestCases()
-        {
-            yield return new TestCaseData(
-                new Rectangle(new Point(0, 0), 2, 2),
-                new Rectangle(new Point(1, 1), 2, 2))
-                .Returns(true)
-                .SetName("Simple intersection");
-
-            yield return new TestCaseData(
-                new Rectangle(new Point(0, 0), 1, 2),
-                new Rectangle(new Point(2, 0), 1, 1))
-                .Returns(false)
-                .SetName("Same Y, but don't intersect.");
-
-            yield return new TestCaseData(
-                new Rectangle(new Point(0, 0), 1, 3),
-                new Rectangle(new Point(0, 4), 1, 3))
-                .Returns(false)
-                .SetName("Same X, but don't intersect.");
-
-            yield return new TestCaseData(
-                new Rectangle(new Point(0, 0), 1, 4),
-                new Rectangle(new Point(0, 4), 1, 4))
-                .Returns(false)
-                .SetName("Common line, don't intersect.");
-
-            yield return new TestCaseData(
-                new Rectangle(new Point(0, 0), 1, 5),
-                new Rectangle(new Point(0, 4), 1, 1))
-                .Returns(true)
-                .SetName("Minimal overlap intersection.");
-
-            yield return new TestCaseData(
-                new Rectangle(new Point(0, 0), 4, 4),
-                new Rectangle(new Point(1, 1), 2, 2))
-                .Returns(true)
-                .SetName("One inside another");
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace TagsCloudVisualization
 {
@@ -12,14 +11,12 @@ namespace TagsCloudVisualization
             X = x;
             Y = y;
         }
-
-        // CR: Just why?
-        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        
         public double Distance(Point point)
         {
-            var XProj = point.X - X;
-            var YProj = point.Y - Y;
-            return Math.Sqrt(XProj * XProj + YProj * YProj);
+            var xProj = point.X - X;
+            var yProj = point.Y - Y;
+            return Math.Sqrt(xProj * xProj + yProj * yProj);
         }
 
         public override bool Equals(object obj)
