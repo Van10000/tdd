@@ -5,20 +5,23 @@ using System.Linq;
 
 namespace TagsCloudVisualization
 {
-    public static class TextPainter
+    public static class RectanglesPainter
     {
         private const double MinimalRelativeMargin = 0.2;
         private const int MinimalAbsoluteMargin = 5;
 
-        public static Bitmap GetPicture(CircularCloudLayouter layouter)
+        public static Bitmap GetPicture(IList<Rectangle> rectangles)
         {
-            var rectangles = layouter.PreviousRectangles;
             var width = FindIntervalWithMargin(rectangles, p => p.X);
             var height = FindIntervalWithMargin(rectangles, p => p.Y);
 
+            var center = new Point(
+                (int) rectangles.Average(rect => rect.GetApproximateCenter().X),
+                (int) rectangles.Average(rect => rect.GetApproximateCenter().Y));
+
             var bitmap = new Bitmap(width, height);
             var graphics = Graphics.FromImage(bitmap);
-            var shift = new Point(width / 2, height / 2) - layouter.Center;
+            var shift = new Point(width / 2, height / 2) - center;
             graphics.FillRegion(Brushes.White, new Region(new System.Drawing.Rectangle(0, 0, width, height)));
             var rand = new Random();
             foreach (var rect in rectangles)

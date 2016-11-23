@@ -24,7 +24,7 @@ namespace CircularCloudLayoutTests
         {
             if (TestContext.CurrentContext.Result.FailCount != 0)
             {
-                var image = TextPainter.GetPicture(layouter);
+                var image = RectanglesPainter.GetPicture(layouter.PreviousRectangles);
                 var dirPath = AppDomain.CurrentDomain.BaseDirectory;
                 var fileName = TestContext.CurrentContext.Test.Name + ".png";
                 var fullPath = Path.Combine(dirPath, fileName);

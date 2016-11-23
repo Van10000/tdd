@@ -18,6 +18,8 @@ namespace TagsCloudVisualization
             Size = size;
         }
 
+        public Point GetApproximateCenter() => LeftDown + Size / 2;
+
         public bool IntersectsWith(Rectangle rect)
         {
             return Intersects1D(LeftDown.X, rect.LeftDown.X, Size.Width, rect.Size.Width) 

@@ -45,6 +45,11 @@ namespace TagsCloudVisualization
             return new Point(a.X - b.X, a.Y - b.Y);
         }
 
+        public static Point operator +(Point a, Size b)
+        {
+            return new Point(a.X + b.Width, a.Y + b.Height);
+        }
+
         public static Point operator -(Point a, Size b)
         {
             return new Point(a.X - b.Width, a.Y - b.Height);
